@@ -19,4 +19,7 @@ jobs:
           # no registry-url: it writes an .npmrc _authToken that is empty here,
           # and npm then skips the OIDC exchange and publishes unauthenticated (404).
       - run: npm install -g npm@latest   # trusted publishing needs npm >= 11.5.1
-      - run: npm publish --access public
+      - run: |
+          npm --version
+          echo "id-token url set: ${ACTIONS_ID_TOKEN_REQUEST_URL:+yes}"
+      - run: npm publish --access public --loglevel verbose
