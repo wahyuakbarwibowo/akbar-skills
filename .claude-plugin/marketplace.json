@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "akbar-skills",
+  "description": "Portable agent skills: read a codebase once, then write the smallest correct change.",
+  "owner": {
+    "name": "Wahyu Akbar Wibowo",
+    "url": "https://github.com/wahyuakbarwibowo"
+  },
+  "plugins": [
+    {
+      "name": "akbar-skills",
+      "description": "codebase-map writes a durable CODEBASE_MAP.md; lean-code enforces reuse > stdlib > native > one line.",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}

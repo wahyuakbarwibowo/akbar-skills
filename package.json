@@ -1,0 +1,12 @@
+{
+  "name": "akbar-skills",
+  "version": "0.1.0",
+  "description": "Two portable agent skills: codebase-map (durable repo map artifact) and lean-code (smallest correct change).",
+  "license": "MIT",
+  "author": "Wahyu Akbar Wibowo",
+  "homepage": "https://github.com/wahyuakbarwibowo/akbar-skills",
+  "repository": "github:wahyuakbarwibowo/akbar-skills",
+  "keywords": ["claude-code", "codex", "opencode", "kilocode", "skills", "agent"],
+  "bin": { "akbar-skills": "./install.sh" },
+  "files": ["install.sh", "skills", ".claude-plugin", ".codex-plugin"]
+}

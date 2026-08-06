@@ -8,8 +8,17 @@ Two skills, one `SKILL.md` each, installable into four agents.
 ## Install
 
 ```bash
-./install.sh            # all four
-./install.sh claude     # or codex | opencode | kilocode
+npx akbar-skills         # all four, no clone
+# or, from a clone:
+./install.sh             # all four
+./install.sh claude      # or codex | opencode | kilocode
+```
+
+Claude Code, as a plugin marketplace:
+
+```
+/plugin marketplace add wahyuakbarwibowo/akbar-skills
+/plugin install akbar-skills@akbar-skills
 ```
 
 | Agent | Path | Invoke |

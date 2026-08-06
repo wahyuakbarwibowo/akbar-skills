@@ -1,0 +1,26 @@
+{
+  "name": "akbar-skills",
+  "version": "0.1.0",
+  "description": "Two portable agent skills: codebase-map (durable repo map artifact) and lean-code (smallest correct change).",
+  "author": {
+    "name": "Wahyu Akbar Wibowo",
+    "url": "https://github.com/wahyuakbarwibowo"
+  },
+  "homepage": "https://github.com/wahyuakbarwibowo/akbar-skills",
+  "repository": "https://github.com/wahyuakbarwibowo/akbar-skills",
+  "license": "MIT",
+  "keywords": ["skills", "codebase-map", "lean-code", "yagni", "productivity"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Akbar Skills",
+    "shortDescription": "Map the codebase, then change it minimally",
+    "developerName": "Wahyu Akbar Wibowo",
+    "category": "Productivity",
+    "capabilities": ["Instructions"],
+    "websiteURL": "https://github.com/wahyuakbarwibowo/akbar-skills",
+    "defaultPrompt": [
+      "Map this codebase into docs/CODEBASE_MAP.md.",
+      "Implement this the lean-code way."
+    ]
+  }
+}
