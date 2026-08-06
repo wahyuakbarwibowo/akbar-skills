@@ -4,7 +4,14 @@
 # Global installs except kilocode, which is per-project (run from the project root).
 set -euo pipefail
 
-SRC="$(cd "$(dirname "$0")/skills" && pwd)"
+# npx installs this as a symlink in node_modules/.bin, so $0 must be resolved
+# before skills/ can be found next to it.
+self="$0"
+while [ -L "$self" ]; do
+  link="$(readlink "$self")"
+  case "$link" in /*) self="$link" ;; *) self="$(dirname "$self")/$link" ;; esac
+done
+SRC="$(cd "$(dirname "$self")/skills" && pwd)"
 SKILLS=(codebase-map lean-code)
 TARGET="${1:-all}"
 
