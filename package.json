@@ -5,8 +5,25 @@
   "license": "MIT",
   "author": "Wahyu Akbar Wibowo",
   "homepage": "https://github.com/wahyuakbarwibowo/akbar-skills",
-  "repository": "github:wahyuakbarwibowo/akbar-skills",
-  "keywords": ["claude-code", "codex", "opencode", "kilocode", "skills", "agent"],
-  "bin": { "akbar-skills": "./install.sh" },
-  "files": ["install.sh", "skills", ".claude-plugin", ".codex-plugin"]
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wahyuakbarwibowo/akbar-skills.git"
+  },
+  "keywords": [
+    "claude-code",
+    "codex",
+    "opencode",
+    "kilocode",
+    "skills",
+    "agent"
+  ],
+  "bin": {
+    "akbar-skills": "install.sh"
+  },
+  "files": [
+    "install.sh",
+    "skills",
+    ".claude-plugin",
+    ".codex-plugin"
+  ]
 }
