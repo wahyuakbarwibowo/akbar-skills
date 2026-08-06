@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>akbar-skills — portable agent skills</title>
+<meta name="description" content="Two portable agent skills: codebase-map writes a durable repo map, lean-code writes the smallest correct change. Installs into Claude Code, Codex, opencode, and Kilo Code.">
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #fdfdfc; --fg: #1a1a18; --muted: #6b6b66;
+    --line: #e3e3df; --card: #f6f6f4; --accent: #a3521f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#141413; --fg:#eceae4; --muted:#9a9891;
+            --line:#2c2c29; --card:#1d1d1b; --accent:#e08a4c; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font: 16px/1.65 ui-sans-serif, -apple-system, "Segoe UI", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  main { max-width: 46rem; margin: 0 auto; padding: 4rem 1.25rem 6rem; }
+  h1 { font-size: 2rem; letter-spacing: -.02em; margin: 0 0 .35rem; }
+  h2 { font-size: 1.15rem; letter-spacing: -.01em; margin: 3rem 0 .85rem;
+       padding-top: 1.5rem; border-top: 1px solid var(--line); }
+  h3 { font-size: 1rem; margin: 1.75rem 0 .4rem; }
+  p, li { color: var(--fg); }
+  .lede { color: var(--muted); font-size: 1.05rem; margin: 0 0 1.25rem; }
+  a { color: var(--accent); text-underline-offset: 2px; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .875em; }
+  p code, li code, td code { background: var(--card); padding: .1em .35em; border-radius: 4px; }
+  pre {
+    background: var(--card); border: 1px solid var(--line); border-radius: 8px;
+    padding: .9rem 1rem; overflow-x: auto; font-size: .875rem; line-height: 1.6;
+  }
+  pre code { background: none; padding: 0; }
+  .grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.1rem; }
+  .card h3 { margin-top: 0; }
+  .card p { margin: 0; color: var(--muted); font-size: .925rem; }
+  .table-wrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: .925rem; }
+  th, td { text-align: left; padding: .55rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; font-size: .8rem;
+       text-transform: uppercase; letter-spacing: .04em; }
+  footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--line);
+           color: var(--muted); font-size: .875rem; }
+</style>
+</head>
+<body>
+<main>
+
+  <h1>akbar-skills</h1>
+  <p class="lede">Two portable agent skills, one <code>SKILL.md</code> each, installable into four agents.</p>
+
+  <div class="grid">
+    <div class="card">
+      <h3>codebase-map</h3>
+      <p>Read an existing codebase, write <code>docs/CODEBASE_MAP.md</code> — a durable artifact other agents load instead of re-exploring.</p>
+    </div>
+    <div class="card">
+      <h3>lean-code</h3>
+      <p>Write the smallest correct change: reuse → stdlib → native → one line.</p>
+    </div>
+  </div>
+
+  <h2>Install</h2>
+
+  <h3>Any agent</h3>
+<pre><code>npx akbar-skills          # all four, no clone
+npx akbar-skills claude   # or codex | opencode | kilocode</code></pre>
+
+  <h3>Claude Code, as a plugin</h3>
+<pre><code>/plugin marketplace add wahyuakbarwibowo/akbar-skills
+/plugin install akbar-skills@akbar-skills</code></pre>
+
+  <h3>From a clone</h3>
+<pre><code>git clone https://github.com/wahyuakbarwibowo/akbar-skills
+cd akbar-skills &amp;&amp; ./install.sh</code></pre>
+
+  <h2>Where the files land</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Agent</th><th>Path</th><th>Invoke</th></tr></thead>
+      <tbody>
+        <tr><td>Claude Code</td><td><code>~/.claude/skills/&lt;name&gt;/SKILL.md</code></td><td>auto (matched on description) or <code>/&lt;name&gt;</code></td></tr>
+        <tr><td>Codex</td><td><code>~/.codex/prompts/&lt;name&gt;.md</code></td><td><code>/&lt;name&gt;</code></td></tr>
+        <tr><td>opencode</td><td><code>~/.config/opencode/skill/&lt;name&gt;/SKILL.md</code></td><td>skill tool / by description</td></tr>
+        <tr><td>Kilo Code</td><td><code>&lt;project&gt;/.kilocode/workflows/&lt;name&gt;.md</code></td><td><code>/&lt;name&gt;</code> — per project, run from repo root</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Global installs except Kilo Code, which is per-project. Edit <code>skills/&lt;name&gt;/SKILL.md</code> and re-run the installer to update everywhere.</p>
+
+  <h2>The artifact</h2>
+  <p><strong>codebase-map</strong> writes <code>docs/CODEBASE_MAP.md</code> into the target repo — plain markdown, every claim citing a path, stamped with the commit sha. Any agent reads it directly; commit it so the next session starts warm.</p>
+
+  <footer>
+    MIT · <a href="https://github.com/wahyuakbarwibowo/akbar-skills">github.com/wahyuakbarwibowo/akbar-skills</a>
+  </footer>
+
+</main>
+</body>
+</html>
